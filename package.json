@@ -1,0 +1,14 @@
+{
+  "name": "top-tweets",
+  "version": "1.0.0",
+  "description": "Display top tweets locations on the map",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akash Bhardwaj",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^8.8.0"
+  }
+}
