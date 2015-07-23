@@ -1,15 +1,21 @@
-var Hapi = require('hapi');
-var server = new Hapi.Server();
-server.connection({port: 3000});
-server.start(function(){
-  console.log("Server running at :" + server.info.uri );
-});
+var Hapi        = require('hapi');
+var Twitter     = require('twitter');
+var server      = new Hapi.Server();
+
+server.connection({host: 'localhost', port: 4000});
+
 
 server.route({
   method: 'GET',
-  path: '/',
-  handler: function(req, res){
-    res('Hello, World');
+  path: '/{param*}',
+  handler: {
+    directory: {
+      path: 'client'
+    }
   }
+});
 
+
+server.start(function(){
+  console.log("Server running at :" + server.info.uri );
 });
