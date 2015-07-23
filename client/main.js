@@ -1,4 +1,6 @@
 (function(){
   var socket = io.connect("http://localhost:4000");
-  console.log('Haachi');
+  socket.on("Connected_start_stream", function(){
+    socket.emit("Start_Streaming");
+  });
 }());
