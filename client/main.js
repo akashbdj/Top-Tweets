@@ -14,22 +14,23 @@
 
   /*  World Map */
 
-  var width   = 1000,
-      height  = 800;
+  var width   = 1440,
+      height  = 1000;
 
   var svg = d3.select("body").append("svg")
-      .attr("width", width)
-      .attr("height", height);
+              .attr("width", width)
+              .attr("height", height);
+
+  var projection  = d3.geo.mercator().scale(160).translate([width/2, height/2]);
+  var path        = d3.geo.path().projection(projection);
+
+  svg.append("rect").attr('width', width).attr('height', height).attr("fill", "#404a67");
 
   d3.json("world.json", function(error, world) {
     if (error) return console.error(error);
 
     var worldData = topojson.feature(world, world.objects.world);
-    var projection = d3.geo.mercator().scale(100).translate([width/2, height/2]);
-
-    var path = d3.geo.path().projection(projection);
-
-    svg.append("path").datum(worldData).attr("d", path).attr("fill", "steelblue").attr("stroke", "#315b7d");
+    svg.append("path").datum(worldData).attr("d", path).attr("fill", "#8a6886").attr("stroke", "#775e7e");
 
   });
 
