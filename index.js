@@ -39,10 +39,10 @@ io.on('connection', function(socket){
   socket.emit("Connected_start_stream");
   socket.on('Start_Streaming', function(){
 
-    /* Location filter for the whole world: '-180, -90, 180, 90' */
+    /* Location filter for the whole world: '-180, -90, 180, 90'  , {'locations':'-180,-90,180,90'} */
     twitter.stream('statuses/filter', {'locations':'-180,-90,180,90'}, function(stream){
-      stream.on('data', function(tweet){
 
+      stream.on('data', function(tweet){
         if(tweet.coordinates && tweet.coordinates !== null){
           console.log(tweet.coordinates);
           socket.emit('Sending_Coordinates', tweet.coordinates);
